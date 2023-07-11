@@ -1,11 +1,12 @@
 import os
 
 class Bookinglist:
-    def __init__(self , bookinglist_name, bookinglist_nim, bookinglist_hp, bookinglist_umur):
+    def __init__(self , bookinglist_name, bookinglist_nim, bookinglist_hp, bookinglist_umur, bookinglist_notes):
         self.bookinglist_name = bookinglist_name
         self.bookinglist_nim = bookinglist_nim
         self.bookinglist_hp = bookinglist_hp
         self.bookinglist_umur = bookinglist_umur
+        self.bookinglist_notes = bookinglist_notes
 
 class JadwalKonsuler:
     def __init__(self,jadwalKonsuler_hari,jadwalKonsuler_nama,jadwalKonsuler_status,jadwalKonsuler_waktu):
@@ -33,16 +34,31 @@ data_list = [None] * 10
 def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 def awal():
-    clear_console()
-    pemakai = str(input("Apakah Anda admin / user ? : ")).lower()
-    if pemakai == 'admin':
-        login()
-    elif pemakai == 'user':
-        user()
-    else:
-        print("Input Tidak Valid")
-        input("coba lagi...")
-        awal()
+    menu_user = True
+    while menu_user == True:
+        clear_console()
+        print('Pemilihan menu:')
+        print('================================================================')
+        print('||1. Admin                                                    ||')
+        print('||2. User                                                     ||')
+        print('||3. Konselor                                                 ||')
+        print('||4. Keluar aplikasi                                          ||')
+        print('================================================================')
+        pemakai = str(input("Silahkan Memilih User Anda : ")).lower()
+        if pemakai == '1':
+            login()
+        elif pemakai == '2':
+            user()
+        elif pemakai == '3':
+            psikolog()
+        elif pemakai == '4':
+            print("Terima kasih telah menggunakan aplikasi ini")
+            input("Tekan enter untuk keluar aplikasi")
+            break
+        else:
+            print("Input Tidak Valid")
+            input("coba lagi...")
+            awal()
 
 def login():
     while True:
@@ -456,6 +472,132 @@ def user() :
             
         else:
                 print("Input tidak valid")
+def psikolog() :        
+    clear_console()         
+    ascii_art = """             
+  __        __   _                            _ 
+  \ \      / /__| | ___ ___  _ __ ___   ___  | |
+   \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ | |
+    \ V  V /  __/ | (_| (_) | | | | | |  __/ |_|
+     \_/\_/ \___|_|\___\___/|_| |_| |_|\___| (_)
+"""
+
+    print(ascii_art)
+    # data_list = [None] * 10
+    menu = True
+    while menu==True:
+        print("Selamat datang di aplikasi konseling")
+        print("1. input note pasien")
+        print("2. Keluar aplikasi")
+        pilihan_menu = int(input("Silahkan memilih menu anda: "))
+        
+        if pilihan_menu == 1:
+            hariKonseling = input('Masukkan hari Konseling : ') 
+            jamkonseling = input("Masukan jam yang ingin pilih (08:00 - 12:00(A) dan 12:00 - 16:00(B)): ")
+            if hariKonseling.lower()=='senin' and jamkonseling.lower()=='a':
+                if jadwal[0].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 1
+                    jadwal[0].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='senin' and jamkonseling.lower()=='b':
+                if jadwal[1].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 2
+                    jadwal[1].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='selasa' and jamkonseling.lower()=='a':
+                if jadwal[2].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 3
+                    jadwal[2].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='selasa' and jamkonseling.lower()=='b':
+                if jadwal[3].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 4
+                    jadwal[3].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='rabu' and jamkonseling.lower()=='a':
+                if jadwal[4].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 5
+                    jadwal[4].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='rabu' and jamkonseling.lower()=='b':
+                if jadwal[5].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 6
+                    jadwal[5].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='kamis' and jamkonseling.lower()=='a':
+                if jadwal[6].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 7
+                    jadwal[6].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='kamis' and jamkonseling.lower()=='b':
+                if jadwal[7].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 8
+                    jadwal[7].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='jumat' and jamkonseling.lower()=='a':
+                if jadwal[8].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 9
+                    jadwal[8].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')
+            elif hariKonseling.lower()=='jumat' and jamkonseling.lower()=='b':
+                if jadwal[9].jadwalKonsuler_status == True :
+                    print("Masukan note anda:")
+                    notes = input('notes :')
+                    id= 10
+                    jadwal[9].jadwalKonsuler_status = False
+                    print('notes tambahkan \n')
+                else :
+                    print('booking tidak ditemukan \n')    
+            else:
+                print('Input tidak valid')
+                
+            
+            if 'notes' in locals():
+                data_konseling = Bookinglist(notes)
+                del data_list[id - 1]
+                data_list.insert(id - 1, data_konseling)
+            else:
+                print('memasukan notes gagal.\n')
+        elif pilihan_menu == 2:
+            print("Terima kasih telah menggunakan aplikasi ini")
+            input("Tekan enter untuk keluar aplikasi")
+            awal()
     
 awal()
 
