@@ -230,8 +230,8 @@ def admin():
                 print('Input tidak valid')
                 
             
-            if 'nama' in locals() and 'nim' in locals() and 'hp' in locals() and 'umur' in locals() and 'id' in locals():
-                data_konseling = Bookinglist(nama, nim, hp, umur)
+            if 'nama' in locals() and 'nim' in locals() and 'hp' in locals() and 'umur' in locals() and 'id' in locals() and 'notes' in locals() :
+                data_konseling = Bookinglist(nama, nim, hp, umur,notes)
                 del data_list[id - 1]
                 data_list.insert(id - 1, data_konseling)
             else:
