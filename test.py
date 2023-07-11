@@ -486,9 +486,9 @@ def konsuler():
              format_tanggal = int(input('Masukkan Tanggal : '))
              deskripsiMasalah  = input('Masukkan Deskripsi Masalah : ')
              solusiMasalah = input('Masukkan Solusi dari Masalah : ')
-            #  format_waktu = datetime.datetime(format_tahun,format_bulan,format_tanggal)
+            
              
-            #  file = open('Jadwal.txt','r')
+            
              for list in jadwal:
                 if namaKonsuler == list.jadwalKonsuler_nama:
                     print('\nLaporan')
