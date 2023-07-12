@@ -34,18 +34,31 @@ def clear_console():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def awal():
-    clear_console()
-    pemakai = str(input("Apakah Anda admin / user / konsuler ? : ")).lower()
-    if pemakai == 'admin':
-        login()
-    elif pemakai == 'user':
-        user()
-    elif pemakai == 'konsuler':
-        konsuler()
-    else:
-        print("Input Tidak Valid")
-        input("coba lagi...")
-        awal()
+    menu_user = True
+    while menu_user == True:
+        clear_console()
+        print('Pemilihan menu:')
+        print('================================================================')
+        print('||1. Admin                                                    ||')
+        print('||2. User                                                     ||')
+        print('||3. Konselor                                                 ||')
+        print('||4. Keluar aplikasi                                          ||')
+        print('================================================================')
+        pemakai = str(input("Silahkan Memilih User Anda : ")).lower()
+        if pemakai == '1':
+            login()
+        elif pemakai == '2':
+            user()
+        elif pemakai == '3':
+            konsuler()
+        elif pemakai == '4':
+            print("Terima kasih telah menggunakan aplikasi ini")
+            input("Tekan enter untuk keluar aplikasi")
+            break
+        else:
+            print("Input Tidak Valid")
+            input("coba lagi...")
+            awal()
 
 def login():
     while True:
