@@ -1,4 +1,5 @@
 import os
+from pwinput import pwinput
 
 class Bookinglist:
     def __init__(self , bookinglist_name, bookinglist_nim, bookinglist_hp, bookinglist_umur):
@@ -65,7 +66,7 @@ def login():
         clear_console() 
         print("Silahkan login")
         username = input("Username: ")
-        password = input("Password: ")
+        password = pwinput("Password: ", "*")
 
         if username == "admin" and password == 'admin123':
             print("Login berhasil!")
