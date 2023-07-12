@@ -1,6 +1,5 @@
 import os
 
-#test
 class Bookinglist:
     def __init__(self , bookinglist_name, bookinglist_nim, bookinglist_hp, bookinglist_umur):
         self.bookinglist_name = bookinglist_name
@@ -66,9 +65,6 @@ def login():
             input("Tekan Enter untuk mencoba lagi...")
             login()
 
-
-
-
 def admin():
     clear_console()
     ascii_art = """
@@ -87,7 +83,8 @@ def admin():
         print("2. Tampilkan Jadwal")
         print("3. Cari jadwal booking berdasarkan NIM")
         print("4. Cetak jadwal ke txt")
-        print("5. Keluar aplikasi")
+        print("5. Lihat hasil laporan")
+        print("6. Keluar aplikasi")
         pilihan_menu = int(input("Silahkan memilih menu anda: "))
 
         if pilihan_menu == 1:   
@@ -393,10 +390,8 @@ def admin():
             n= 0
             file = open("Jadwal.txt", "w")
             for list in jadwal:
-
                 if list.jadwalKonsuler_status== True:
                     tersedia = 'Tersedia'
-
                     file.write ('=====================================' + '\n')
                     file.write('Hari : '+list.jadwalKonsuler_hari  + '\n')
                     file.write("Konsuler : "+list.jadwalKonsuler_nama + '\n')
@@ -415,10 +410,18 @@ def admin():
                     file.write('di Booking oleh : '+data_list[n].bookinglist_name + '\n')
                     file.write('NIM : '+data_list[n].bookinglist_nim + '\n')
                     file.write('=====================================' + '\n')
-
                     n += 1 
             file.close()
+        
         elif pilihan_menu == 5:
+            report = open('Laporan.txt','r')
+            for list in report:
+                print(report.read())
+            else:
+                input("tekan enter untuk kembali ke menu")
+                clear_console()
+            
+        elif pilihan_menu == 6:
             print("Terima kasih telah menggunakan aplikasi ini")
             input("Tekan enter untuk keluar aplikasi")
             break           
@@ -443,7 +446,6 @@ def user() :
         print("1. Lihat Jadwal Booking yang tersedia")
         print("2. Keluar aplikasi")
         pilihan_menu = int(input("Silahkan memilih menu anda: "))
-
         if pilihan_menu == 1:
             file = open('Jadwal.txt','r')
             for list in jadwal:
@@ -451,11 +453,12 @@ def user() :
             else:
                 input("tekan enter untuk kembali ke menu")
                 clear_console()
+
         elif pilihan_menu == 2:
             print("Terima kasih telah menggunakan aplikasi ini")
             input("Tekan enter untuk keluar aplikasi")
             break
-            
+    
         else:
                 print("Input tidak valid")
 
@@ -477,18 +480,16 @@ def konsuler():
         print("2. Cetak Laporan ke txt")
         print("3. Keluar aplikasi")
         pilihan_menu = int(input("Silahkan memilih menu anda: "))
-
+        
         if pilihan_menu == 1:
              namaKonsuler = input('Masukkan Nama Konsuler: ')
              namaPasien = input('Masukkan Nama Pasien : ').lower()
-             format_tahun = int(input('Masukkan Tahun : '))
-             format_bulan = int(input('Masukkan Bulan (1 - 12) : '))
-             format_tanggal = int(input('Masukkan Tanggal : '))
+             format_tahun = input('Masukkan Tahun : ')
+             format_bulan = input('Masukkan Bulan (1 - 12) : ')
+             format_tanggal = input('Masukkan Tanggal : ')
              deskripsiMasalah  = input('Masukkan Deskripsi Masalah : ')
              solusiMasalah = input('Masukkan Solusi dari Masalah : ')
-            
-             
-            
+        
              for list in jadwal:
                 if namaKonsuler == list.jadwalKonsuler_nama:
                     print('\nLaporan')
@@ -496,25 +497,25 @@ def konsuler():
                     print('Nama Konsuler : '+ list.jadwalKonsuler_nama)
                     print('Nama Pasien : '+ namaPasien)
                     print('Hari Konsultasi : ' + list.jadwalKonsuler_hari)
-                    print('Tanggal Konsultasi : ' ,format_tanggal," - ",format_bulan," - ",format_tahun)
+                    print('Tanggal Konsultasi : ' ,format_tanggal,"-",format_bulan,"-",format_tahun)
                     print('Deskripsi Masalah : '+deskripsiMasalah)
                     print('Solusi Masalah : '+solusiMasalah)
                     print('=====================================' + '\n') 
                 else:
                     pass
-
+    
         elif pilihan_menu == 2:
             report = open('Laporan.txt','w')
             for list in jadwal:
                 if namaKonsuler == list.jadwalKonsuler_nama:
-                    report.write('\nLaporan')
-                    report.write('=====================================')
-                    report.write('Nama Konsuler : '+ list.jadwalKonsuler_nama)
-                    report.write('Nama Pasien : '+ namaPasien)
-                    report.write('Hari Konsultasi : ' + list.jadwalKonsuler_hari)
-                    report.write('Tanggal Konsultasi : {format_tanggal} - {format_bulan} - {format_tahun}')
-                    report.write('Deskripsi Masalah : '+deskripsiMasalah)
-                    report.write('Solusi Masalah : '+solusiMasalah)
+                    report.write('\nLaporan\n')
+                    report.write('=====================================\n')
+                    report.write('Nama Konsuler : '+ list.jadwalKonsuler_nama + '\n')
+                    report.write('Nama Pasien : '+ namaPasien+'\n')
+                    report.write('Hari Konsultasi : ' + list.jadwalKonsuler_hari+'\n')
+                    report.write('Tanggal Konsultasi : ' +format_tanggal+"-"+format_bulan+"-"+format_tahun+'\n')
+                    report.write('Deskripsi Masalah : '+deskripsiMasalah+'\n')
+                    report.write('Solusi Masalah : '+solusiMasalah+'\n')
                     report.write('=====================================' + '\n') 
                 else:
                     pass
@@ -524,5 +525,8 @@ def konsuler():
             print("Terima kasih telah menggunakan aplikasi ini")
             input("Tekan enter untuk keluar aplikasi")
             break
+
+        else:
+            print("Input tidak valid")
 
 awal()
